@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import instance from "~/apis";
 import ProductList from "~/components/ProductsList";
 import { TProduct } from "~/interfaces/product";
 
@@ -7,15 +9,37 @@ const Home = () => {
 
   // ! Get API va lay ra duoc:
 
-    useEffect(() =>{ fetch("http://localhost:3000/products")
-    .then((res) => res.json())
-    .then((data) => {
-      setProducts(data);
-      return () =>{
-        console.log("unmount");
-        //! cleanup function
-      }
-    })}, [])
+    // useEffect(() =>{ fetch("http://localhost:3000/products")
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setProducts(data);
+    //   return () =>{
+    //     console.log("unmount");
+    //     //! cleanup function
+    //   }
+    // })}, [])
+    useEffect(() =>{
+      //!cách 1
+      // fetch("http://localhost:3000/products")
+      // .then((res) => res.json())
+      // .then((data) =>{
+      //   setProducts(data);
+      //   return() =>{
+      //     console.log(unmount);   
+      //   }
+      // })
+      const getAllProducts = async () =>{
+        try {
+          // const { data } = await axios.get("http://localhost:3000/products");
+          const { data } = await instance.get("/products");
+          setProducts(data);
+        } catch (error) {
+          console.log(error);
+          
+        }
+      };
+      getAllProducts();
+    }, [])
 
   /**
    * ! Dependency với 3 trường hợp:
