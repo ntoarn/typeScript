@@ -1,9 +1,16 @@
-import React from "react";
+import React from 'react'
+import { TProduct } from '~/interfaces/product';
+type Props = { product: TProduct};
 
-type Props = {};
+const Shop = (props: Props) => {
+  return (
+    <div>
+      <h1>{props.product.title}</h1>
+      <img src={props.product.thumbnail} alt={props.product.title} />
+      <p>{props.product.price}</p>
+      <p>{props.product.description}</p>
+    </div>
+  )
+}
 
-const Shop: React.FC = (props: Props) => {
-  return <div>Shop</div>;
-};
-
-export default Shop;
+export default Shop

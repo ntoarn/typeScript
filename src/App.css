@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -42,36 +42,31 @@
   color: #888;
 }
 /* Header Styles */
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
-}
-
-nav ul {
+.header-menu {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  background-color: #333; /* Màu nền của header */
 }
 
-nav ul li {
+.header-menu li {
   display: inline;
-  margin-right: 20px;
 }
 
-nav ul li:last-child {
-  margin-right: 0;
+.header-menu li:not(:first-child) {
+  margin-left: 20px; /* Khoảng cách giữa các mục trong menu */
 }
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
+.nav-link {
+  color: white; /* Màu chữ cho các liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân */
+  padding: 10px; /* Khoảng cách lề bên trong của các mục */
 }
 
-nav ul li a:hover {
-  text-decoration: underline;
+.nav-link:hover {
+  background-color: #555; /* Màu nền khi di chuột qua */
 }
+
 .footer {
   background-color: #333;
   color: #fff;
