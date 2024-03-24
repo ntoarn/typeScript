@@ -149,6 +149,9 @@
   padding: 20px;
   margin-right: 20px; /* Khoảng cách giữa các sản phẩm */
   margin-bottom: 20px;
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: ; */
 }
 
 .product-item:last-child {

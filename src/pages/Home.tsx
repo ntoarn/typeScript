@@ -50,11 +50,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <button className="btn" onClick={() => handleClick()}>
-        Click Me!
-      </button> */}
-      
-      <ProductList products={products} />
+          <ProductList product={products} />
     </div>
   );
 };
