@@ -1,24 +1,25 @@
-import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
-      <NavLink className="nav-link" to="/">
-        <Navbar.Brand>Home</Navbar.Brand>
-      </NavLink>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <NavLink className="nav-link" to="/shop">
-            <Nav.Link>Shop</Nav.Link>
-          </NavLink>
-          <NavLink className="nav-link" to="/login">
-            <Nav.Link>Login</Nav.Link>
-          </NavLink>
-          <NavLink className="nav-link" to="/register">
-            <Nav.Link>Register</Nav.Link>
-          </NavLink>
+        <Nav className="mr-auto">
+          <Nav.Link as={NavLink} to="/">
+            Home
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/login">
+            Login
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/register">
+            Register
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/admin">
+            Admin
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

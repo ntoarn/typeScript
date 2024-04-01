@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import instance from "~/apis";
 import { TProduct } from "~/interfaces/product";
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { getProduct } from "~/apis/product";
 
 type Props = {};
 
@@ -14,27 +15,13 @@ const ProductDetail = (props: Props) => {
     description: "",
   });
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const { data } = await instance.get(`/products/${id}`);
-        setProduct(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getProduct();
-  }, [id]);
+    (async () => {
+      const data = await getProduct(`${id}`)
+      setProduct(data);
+    })();
+  }, []);
   return (
-    // <div>
-    //   <h1>Chi tiet san pham</h1>
-    //   <div>
-    //     <h2>{product.title}</h2>
-    //     <p>Gia: {product.price}</p>
-    //     <p>{product.description}</p>
-        // <img src={product.thumbnail} alt={product.title} />
-    //   </div>
-    // </div>
+
     <>
       <Container>
       <Row>

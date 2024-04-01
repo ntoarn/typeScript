@@ -1,45 +1,12 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import instance from "~/apis";
-import ProductList from "~/components/ProductsList";
+// import axios from "axios";
+// import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+// import instance from "~/apis";
+// import ProductList from "~/components/ProductsList";
 import { TProduct } from "~/interfaces/product";
+type Props = { products: TProduct[] };
+const Home = ({ products }: Props) => {
 
-const Home = () => {
-  const [products, setProducts] = useState<TProduct[]>([]);
-
-  // ! Get API va lay ra duoc:
-
-    // useEffect(() =>{ fetch("http://localhost:3000/products")
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   setProducts(data);
-    //   return () =>{
-    //     console.log("unmount");
-    //     //! cleanup function
-    //   }
-    // })}, [])
-    useEffect(() =>{
-      //!cách 1
-      // fetch("http://localhost:3000/products")
-      // .then((res) => res.json())
-      // .then((data) =>{
-      //   setProducts(data);
-      //   return() =>{
-      //     console.log(unmount);   
-      //   }
-      // })
-      const getAllProducts = async () =>{
-        try {
-          // const { data } = await axios.get("http://localhost:3000/products");
-          const { data } = await instance.get("/products");
-          setProducts(data);
-        } catch (error) {
-          console.log(error);
-          
-        }
-      };
-      getAllProducts();
-    }, [])
 
   /**
    * ! Dependency với 3 trường hợp:
@@ -49,10 +16,30 @@ const Home = () => {
    */
 
   return (
-    <div>
-          <ProductList product={products} />
-    </div>
-  );
+    <>
+    <h1>Danh sach san pham</h1>
+      <div className="row gx-5">
+        {products.map((product) => (
+          <div className="col col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+            <div key={product.id} className="product-card">
+              <Link to={`/shop/${product.id}`}>
+                <img width={300} src={product.thumbnail} alt={product.title} />
+              </Link>
+              <div className="product-content">
+                <Link to={`/shop/${product.id}`}>
+                  <h2>{product.title}</h2>
+                </Link>
+                <p>{product.price}</p>
+                <p>{product.brand}</p>
+                <p>{product.category}</p>
+                <button className="btn btn-primary">Add to card</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )
 };
 
 export default Home;
