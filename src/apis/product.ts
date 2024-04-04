@@ -18,7 +18,6 @@ export const updateProduct = async (product: TProduct) => {
     console.log(error);
   }
 };
-
 export const getProducts = async () => {
   try {
     const { data } = await instance.get(`/products`);

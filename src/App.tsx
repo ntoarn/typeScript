@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import { BrowserRouter, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from "react-router-dom";
-import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import Notfound from "./pages/Notfound";
 import Login from "./pages/Login";
@@ -46,6 +45,15 @@ function App() {
       navigate("/admin");
     })();
   };
+  const handleDelete = (id: Number) => {
+    (async () =>{
+      const confirmValue = confirm("Are you sure?")
+      if (confirmValue) {
+        await instance.delete(`/products/${id}`);
+        setProducts(products.filter((item) => item.id !== id));
+      }
+    })();
+  }
   return (
     <>
       <div className="app">
@@ -62,7 +70,7 @@ function App() {
 
             {/* Admin */}
             <Route path="/admin">
-              <Route index element={<Dashboard products={products} />} />
+              <Route index element={<Dashboard products={products} onDel={handleDelete} />} />
               <Route
                 path="/admin/add"
                 element={<ProductAdd onAdd={handleAddProduct} />}

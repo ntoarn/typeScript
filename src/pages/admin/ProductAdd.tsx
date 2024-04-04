@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { TProduct } from "~/interfaces/product";
 import Joi from "joi";
 import {joiResolver} from "@hookform/resolvers/joi";
-import { error } from "console";
+
 
 type Props = {
   onAdd: (data: TProduct) => void;
